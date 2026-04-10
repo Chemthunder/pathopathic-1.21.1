@@ -1,6 +1,5 @@
 package net.chemthunder.pathopathic.data;
 
-import net.chemthunder.pathopathic.data.provider.PPSymptomTagGen;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 

@@ -5,12 +5,12 @@ import net.chemthunder.pathopathic.impl.Pathopathic;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryWrapper;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
-
-import java.util.Optional;
 
 public class DiseaseComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<DiseaseComponent> KEY = MiscUtils.getOrCreateKey(Pathopathic.id("disease"), DiseaseComponent.class);
@@ -21,7 +21,6 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
     }
 
     private Disease disease = Disease.EMPTY;
-    public final String DISEASE = this.disease.name();
 
     private int duration = 0;
 
@@ -60,15 +59,19 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
     public void readFromNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         this.duration = nbtCompound.getInt("Duration");
 
-        this.disease = Disease.fromString(nbtCompound.getString("disease"));
+        if (nbtCompound.contains("Disease", NbtElement.COMPOUND_TYPE)) {
+            NbtCompound compound = nbtCompound.getCompound("Disease");
+            this.disease = Disease.CODEC.parse(wrapperLookup.getOps(NbtOps.INSTANCE), compound).resultOrPartial(Pathopathic.LOGGER::error).orElseThrow();
+        } else {
+            this.disease = null;
+        }
     }
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbtCompound.putInt("Duration", duration);
 
-        NbtCompound diseaseCompound = new NbtCompound();
-        diseaseCompound.putString(DISEASE, this.disease.name());
-
-        nbtCompound.put("Disease", diseaseCompound);
+        if (this.disease != null) {
+            nbtCompound.put("Disease", Disease.CODEC.encodeStart(wrapperLookup.getOps(NbtOps.INSTANCE), this.disease).getOrThrow());
+        }
     }
 }

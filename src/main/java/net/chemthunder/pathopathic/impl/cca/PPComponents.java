@@ -7,7 +7,6 @@ import org.ladysnake.cca.api.v3.entity.EntityComponentInitializer;
 import org.ladysnake.cca.api.v3.entity.RespawnCopyStrategy;
 
 public class PPComponents implements EntityComponentInitializer {
-
     public void registerEntityComponentFactories(EntityComponentFactoryRegistry registry) {
         registry.beginRegistration(LivingEntity.class, DiseaseComponent.KEY).respawnStrategy(RespawnCopyStrategy.NEVER_COPY).end(DiseaseComponent::new);
     }

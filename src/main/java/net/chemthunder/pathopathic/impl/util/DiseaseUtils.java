@@ -1,6 +1,7 @@
 package net.chemthunder.pathopathic.impl.util;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
+import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 
@@ -58,10 +59,10 @@ public class DiseaseUtils {
     }
 
     public static Disease generateRandomDisease() {
-        return new Disease(generateName(), Symptom.EMPTY, Symptom.EMPTY, false, false);
+        return new Disease(generateName(), PPSymptoms.INSOMNIA, PPSymptoms.INSOMNIA, false, false);
     }
 
     public static boolean diseaseHasSymptom(Symptom symptom, Disease disease) {
-        return disease.primary().equals(symptom) || disease.secondary().equals(symptom);
+        return disease.primary() != null && disease.primary().equals(symptom) || disease.secondary() != null && disease.secondary().equals(symptom);
     }
 }

@@ -1,10 +1,8 @@
 package net.chemthunder.pathopathic.impl.index.tag;
 
 import net.chemthunder.pathopathic.impl.Pathopathic;
-import net.chemthunder.pathopathic.impl.util.PPRegistries;
 import net.chemthunder.pathopathic.impl.util.PPRegistryKeys;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
-import net.minecraft.registry.tag.TagBuilder;
 import net.minecraft.registry.tag.TagKey;
 
 public interface PPSymptomTags {

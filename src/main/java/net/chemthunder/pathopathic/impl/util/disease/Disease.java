@@ -4,9 +4,7 @@ import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 public record Disease(String name, Symptom primary, Symptom secondary, boolean isViral, boolean isLethal) {
     public static final Disease EMPTY = new Disease("null", null, null, false, false);
@@ -26,17 +24,6 @@ public record Disease(String name, Symptom primary, Symptom secondary, boolean i
         ALL_DISEASES.add(EMPTY);
         return ALL_DISEASES;
     }
-
-//    public static Disease fromString(String name) {
-//        if (name == null || name.isEmpty()) {
-//            return EMPTY;
-//        }
-//
-//        return Arrays.stream(getAllDiseases().toArray())
-//                .filter(disease -> disease.name().equalsIgnoreCase(name))
-//                .findFirst()
-//                .orElse(EMPTY);
-//    }
 
     public static Disease fromString(String name) {
         return ALL_DISEASES.stream().filter(disease -> disease.name().equalsIgnoreCase(name)).findFirst().orElse(EMPTY);

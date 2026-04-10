@@ -1,7 +1,6 @@
 package net.chemthunder.pathopathic.mixin.client;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import net.chemthunder.pathopathic.data.provider.PPSymptomTagGen;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.chemthunder.pathopathic.impl.util.DiseaseUtils;

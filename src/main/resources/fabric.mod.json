@@ -25,6 +25,9 @@
     "main": [
       "net.chemthunder.pathopathic.impl.Pathopathic"
     ],
+    "client": [
+      "net.chemthunder.pathopathic.impl.PathopathicClient"
+    ],
     "fabric-datagen": [
       "net.chemthunder.pathopathic.data.PathopathicDataGen"
     ],

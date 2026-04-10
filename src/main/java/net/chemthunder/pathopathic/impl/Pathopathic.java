@@ -16,6 +16,8 @@ public class Pathopathic implements ModInitializer {
 	public void onInitialize() {
         PPItems.init();
         PPDataComponents.init();
+        PPSymptoms.init();
+        PPPresetDiseases.init();
 
         /* Custom */
         PPSymptoms.init();

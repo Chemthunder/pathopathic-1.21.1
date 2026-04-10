@@ -1,8 +1,8 @@
 package net.chemthunder.pathopathic.impl.item;
 
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
-import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.DiseaseUtils;
+import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
