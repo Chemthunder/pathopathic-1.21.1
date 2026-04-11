@@ -2,6 +2,7 @@ package net.chemthunder.pathopathic.impl.util.disease;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +28,9 @@ public record Disease(String name, Symptom primary, Symptom secondary, boolean i
 
     public static Disease fromString(String name) {
         return ALL_DISEASES.stream().filter(disease -> disease.name().equalsIgnoreCase(name)).findFirst().orElse(EMPTY);
+    }
+
+    public boolean isEmpty() {
+        return this == EMPTY;
     }
 }
