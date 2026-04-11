@@ -3,11 +3,14 @@ package net.chemthunder.pathopathic.impl.cca.entity;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.Pathopathic;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
+import net.minecraft.client.network.ClientPlayerEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import org.ladysnake.cca.api.v3.component.ComponentKey;
 import org.ladysnake.cca.api.v3.component.sync.AutoSyncedComponent;
 import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
@@ -63,14 +66,14 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
             NbtCompound compound = nbtCompound.getCompound("Disease");
             this.disease = Disease.CODEC.parse(wrapperLookup.getOps(NbtOps.INSTANCE), compound).resultOrPartial(Pathopathic.LOGGER::error).orElseThrow();
         } else {
-            this.disease = null;
+            this.disease = Disease.EMPTY;
         }
     }
 
     public void writeToNbt(NbtCompound nbtCompound, RegistryWrapper.WrapperLookup wrapperLookup) {
         nbtCompound.putInt("Duration", duration);
 
-        if (this.disease != null) {
+        if (this.disease != Disease.EMPTY) {
             nbtCompound.put("Disease", Disease.CODEC.encodeStart(wrapperLookup.getOps(NbtOps.INSTANCE), this.disease).getOrThrow());
         }
     }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public record Disease(String name, Symptom primary, Symptom secondary, boolean isViral, boolean isLethal) {
-    public static final Disease EMPTY = new Disease("null", null, null, false, false);
+    public static final Disease EMPTY = new Disease("null", Symptom.EMPTY, Symptom.EMPTY, false, false);
     public static List<Disease> ALL_DISEASES = new ArrayList<>();
 
     public static final Codec<Disease> CODEC = RecordCodecBuilder.create(instance ->

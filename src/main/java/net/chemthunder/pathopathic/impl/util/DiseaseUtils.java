@@ -24,7 +24,7 @@ public class DiseaseUtils {
             "hydro",
             "plate",
             "avogadro",
-            "sexually transmitted "
+            "sexually Transmitted "
     );
     private static final List<String> SUFFIXES = List.of(
             "incantation",
@@ -34,13 +34,13 @@ public class DiseaseUtils {
             "suh",
             "itus",
             "mania",
-            " syndrome",
+            " Syndrome",
             "inator",
             "phobic",
             "",
-            " infliction",
+            " Infliction",
             "mancy",
-            " hysteria"
+            " Iysteria"
     );
     private static final List<String> BLACKLIST = List.of(
             "neonazi",
@@ -59,7 +59,8 @@ public class DiseaseUtils {
     }
 
     public static Disease generateRandomDisease() {
-        return new Disease(generateName(), PPSymptoms.INSOMNIA, PPSymptoms.INSOMNIA, false, false);
+        Random random = new Random();
+        return new Disease(MiscUtils.formatString(generateName()), PPSymptoms.SYMPTOMS.get(random.nextInt(PPSymptoms.SYMPTOMS.size())), PPSymptoms.SYMPTOMS.get(random.nextInt(PPSymptoms.SYMPTOMS.size())), false, false);
     }
 
     public static boolean diseaseHasSymptom(Symptom symptom, Disease disease) {

@@ -11,8 +11,6 @@ public interface PPPresetDiseases {
 
     Disease LUNAR_LUCID = create("lunar_lucid", PPSymptoms.CANCEROUS, PPSymptoms.INSOMNIA, false, false);
 
-    //
-
     private static Disease create(String name, Symptom primary, Symptom secondary, boolean isViral, boolean isLethal) {
         Disease gen = new Disease(name, primary, secondary, isViral, isLethal);
         DISEASES.add(gen);

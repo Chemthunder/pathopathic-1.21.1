@@ -25,8 +25,7 @@ public class CoatedStickItem extends Item {
                 Disease generatedDisease = DiseaseUtils.generateRandomDisease();
 
                 disease.setDisease(generatedDisease);
-                disease.setDuration(900);
-                user.sendMessage(Text.literal(generatedDisease.name()), true);
+                disease.setDuration(1900);
             } else {
                 user.sendMessage(Text.literal(disease.getDisease().name()));
 
@@ -38,7 +37,6 @@ public class CoatedStickItem extends Item {
                 user.sendMessage(Text.literal(disease.getDisease().isLethal() + ""));
             }
         }
-
         return super.use(world, user, hand);
     }
 }
