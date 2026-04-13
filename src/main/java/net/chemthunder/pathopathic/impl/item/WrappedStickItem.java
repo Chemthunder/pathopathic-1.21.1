@@ -1,32 +1,31 @@
 package net.chemthunder.pathopathic.impl.item;
 
-import net.acoyt.acornlib.api.item.ModelVaryingItem;
 import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.component.HeldDiseaseComponent;
+import net.chemthunder.pathopathic.impl.entity.PathoCauldronBlockEntity;
 import net.chemthunder.pathopathic.impl.index.PPDataComponents;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.Arrays;
 import java.util.List;
 
-public class CoatedStickItem extends Item implements ModelVaryingItem {
-    public CoatedStickItem(Settings settings) {
+public class WrappedStickItem extends Item {
+    public WrappedStickItem(Settings settings) {
         super(settings
                 .component(PPDataComponents.HELD_DISEASE, new HeldDiseaseComponent(Disease.EMPTY)));
     }
@@ -53,6 +52,25 @@ public class CoatedStickItem extends Item implements ModelVaryingItem {
         return super.use(world, user, hand);
     }
 
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        if (player != null) {
+            BlockState state = context.getWorld().getBlockState(context.getBlockPos());
+
+            ItemStack stack = player.getStackInHand(player.getActiveHand());
+            var comp = stack.get(PPDataComponents.HELD_DISEASE);
+
+            if (comp != null) {
+                if (state.isOf(Blocks.WATER_CAULDRON)) {
+                    if (context.getWorld().getBlockEntity(context.getBlockPos()) instanceof PathoCauldronBlockEntity cauldronBlockEntity) {
+                        cauldronBlockEntity.setHeldDisease(comp.disease());
+                    }
+                }
+            }
+        }
+        return super.useOnBlock(context);
+    }
+
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         var comp = stack.get(PPDataComponents.HELD_DISEASE);
 
@@ -76,15 +94,5 @@ public class CoatedStickItem extends Item implements ModelVaryingItem {
 
     public boolean allowComponentsUpdateAnimation(PlayerEntity player, Hand hand, ItemStack oldStack, ItemStack newStack) {
         return oldStack.getItem() != newStack.getItem();
-    }
-
-    public Identifier getModel(ModelTransformationMode renderMode, ItemStack stack, @Nullable LivingEntity entity) {
-        return Identifier.ofVanilla("stick");
-    }
-
-    public List<Identifier> getModelsToLoad() {
-        return Arrays.asList(
-                Identifier.ofVanilla("stick")
-        );
     }
 }

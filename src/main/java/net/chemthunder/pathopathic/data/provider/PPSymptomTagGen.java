@@ -1,6 +1,6 @@
 package net.chemthunder.pathopathic.data.provider;
 
-import net.chemthunder.pathopathic.impl.index.PPSymptoms;
+import net.chemthunder.pathopathic.impl.index.Symptoms;
 import net.chemthunder.pathopathic.impl.index.tag.PPSymptomTags;
 import net.chemthunder.pathopathic.impl.util.PPRegistryKeys;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
@@ -17,7 +17,7 @@ public class PPSymptomTagGen extends FabricTagProvider<Symptom> {
 
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         this.getOrCreateTagBuilder(PPSymptomTags.DISABLES_SPRINTING)
-                .add(PPSymptoms.LETHARGIC)
+                .add(Symptoms.LETHARGIC)
                 .setReplace(false);
     }
 }

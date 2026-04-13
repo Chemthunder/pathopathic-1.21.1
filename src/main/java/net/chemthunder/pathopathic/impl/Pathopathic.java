@@ -1,9 +1,6 @@
 package net.chemthunder.pathopathic.impl;
 
-import net.chemthunder.pathopathic.impl.index.PPDataComponents;
-import net.chemthunder.pathopathic.impl.index.PPItems;
-import net.chemthunder.pathopathic.impl.index.PPPresetDiseases;
-import net.chemthunder.pathopathic.impl.index.PPSymptoms;
+import net.chemthunder.pathopathic.impl.index.*;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
@@ -16,14 +13,16 @@ public class Pathopathic implements ModInitializer {
 	public void onInitialize() {
         PPItems.init();
         PPDataComponents.init();
-        PPSymptoms.init();
-        PPPresetDiseases.init();
+        Symptoms.init();
+        PresetDiseases.init();
+        PPBlockEntities.init();
+        PPItemGroups.init();
 
         /* Custom */
-        PPSymptoms.init();
-        PPPresetDiseases.init();
+        Symptoms.init();
+        PresetDiseases.init();
 
-		LOGGER.info("Hello Fabric world!");
+		LOGGER.info("Disease time!!!");
 	}
 
     public static Identifier id(String path) {

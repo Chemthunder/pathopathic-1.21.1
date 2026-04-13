@@ -6,10 +6,10 @@ import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import java.util.ArrayList;
 import java.util.List;
 
-public interface PPPresetDiseases {
+public interface PresetDiseases {
     List<Disease> DISEASES = new ArrayList<>();
 
-    Disease LUNAR_LUCID = create("lunar_lucid", PPSymptoms.CANCEROUS, PPSymptoms.INSOMNIA, false, false);
+    Disease LUNAR_LUCID = create("lunar_lucid", Symptoms.CANCEROUS, Symptoms.INSOMNIA, false, false);
 
     private static Disease create(String name, Symptom primary, Symptom secondary, boolean isViral, boolean isLethal) {
         Disease gen = new Disease(name, primary, secondary, isViral, isLethal);

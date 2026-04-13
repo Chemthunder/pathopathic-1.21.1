@@ -1,6 +1,7 @@
 package net.chemthunder.pathopathic.data;
 
 import net.chemthunder.pathopathic.data.provider.PPLangGen;
+import net.chemthunder.pathopathic.data.provider.PPModelGen;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -10,5 +11,6 @@ public class PathopathicDataGen implements DataGeneratorEntrypoint {
         FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
 
         pack.addProvider(PPLangGen::new);
+        pack.addProvider(PPModelGen::new);
 	}
 }

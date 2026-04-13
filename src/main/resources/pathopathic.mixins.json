@@ -3,6 +3,8 @@
   "package": "net.chemthunder.pathopathic.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "CauldronBlockMixin",
+    "PlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

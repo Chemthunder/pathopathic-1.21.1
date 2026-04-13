@@ -1,7 +1,7 @@
 package net.chemthunder.pathopathic.impl.util;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
-import net.chemthunder.pathopathic.impl.index.PPSymptoms;
+import net.chemthunder.pathopathic.impl.index.Symptoms;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 
@@ -60,7 +60,7 @@ public class DiseaseUtils {
 
     public static Disease generateRandomDisease() {
         Random random = new Random();
-        return new Disease(MiscUtils.formatString(generateName()), PPSymptoms.SYMPTOMS.get(random.nextInt(PPSymptoms.SYMPTOMS.size())), PPSymptoms.SYMPTOMS.get(random.nextInt(PPSymptoms.SYMPTOMS.size())), false, false);
+        return new Disease(MiscUtils.formatString(generateName()), Symptoms.SYMPTOMS.get(random.nextInt(Symptoms.SYMPTOMS.size())), Symptoms.SYMPTOMS.get(random.nextInt(Symptoms.SYMPTOMS.size())), false, false);
     }
 
     public static boolean diseaseHasSymptom(Symptom symptom, Disease disease) {
