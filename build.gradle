@@ -36,6 +36,10 @@ repositories {
     maven { url "https://maven.bawnorton.com/releases" }
 }
 
+loom {
+    accessWidenerPath = file("src/main/resources/pathopathic.accesswidener")
+}
+
 fabricApi {
 	configureDataGeneration {
         modId = "pathopathic"

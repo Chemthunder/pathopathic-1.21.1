@@ -6,9 +6,12 @@ import net.chemthunder.pathopathic.impl.component.HeldDiseaseComponent;
 import net.minecraft.component.ComponentType;
 
 public interface PPDataComponents {
-    ComponentTypeRegistrant DATA_COMPONENTS = new ComponentTypeRegistrant(Pathopathic.MOD_ID);
+    ComponentTypeRegistrant COMPONENTS = new ComponentTypeRegistrant(Pathopathic.MOD_ID);
 
-    ComponentType<HeldDiseaseComponent> HELD_DISEASE = DATA_COMPONENTS.register("held_disease", builder -> builder.codec(HeldDiseaseComponent.CODEC));
+    ComponentType<HeldDiseaseComponent> HELD_DISEASE = COMPONENTS.register("held_disease",
+            builder -> builder
+                    .codec(HeldDiseaseComponent.CODEC)
+                    .packetCodec(HeldDiseaseComponent.PACKET_CODEC));
 
     static void init() {}
 }

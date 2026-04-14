@@ -1,7 +1,10 @@
 package net.chemthunder.pathopathic.mixin;
 
-import net.chemthunder.pathopathic.impl.entity.PathoCauldronBlockEntity;
-import net.minecraft.block.*;
+import net.chemthunder.pathopathic.impl.block.entity.CauldronBlockEntity;
+import net.minecraft.block.AbstractCauldronBlock;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockEntityProvider;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -19,14 +22,14 @@ public abstract class CauldronBlockMixin extends Block implements BlockEntityPro
     @Nullable
     @Override
     public BlockEntity createBlockEntity(BlockPos pos, BlockState state) {
-        return new PathoCauldronBlockEntity(pos, state);
+        return new CauldronBlockEntity(pos, state);
     }
 
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World nullWorld, BlockState nullState, BlockEntityType<T> type) {
         return (world, pos, state, blockEntity) -> {
-            if (blockEntity instanceof PathoCauldronBlockEntity cauldronBlock) {
+            if (blockEntity instanceof CauldronBlockEntity cauldronBlock) {
                 cauldronBlock.tick(cauldronBlock, world, pos, state);
             }
         };

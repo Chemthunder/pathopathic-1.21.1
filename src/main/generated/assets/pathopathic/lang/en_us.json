@@ -1,5 +1,22 @@
 {
+  "disease.pathopathic.distracted": "Distracted",
+  "disease.pathopathic.empty": "Empty",
+  "disease.pathopathic.lunar_lucid": "Lunar Lucid",
+  "disease.pathopathic.test": "Test",
   "item.pathopathic.foul_pouch": "Foul Pouch",
   "item.pathopathic.test": "Test",
-  "item.pathopathic.wrapped_stick": "Wrapped Stick"
+  "item.pathopathic.wrapped_stick": "Wrapped Stick",
+  "symptom.pathopathic.cancerous": "Cancerous",
+  "symptom.pathopathic.cross_eyed": "Cross Eyed",
+  "symptom.pathopathic.distracted": "Distracted",
+  "symptom.pathopathic.dizzy_spells": "Dizzy Spells",
+  "symptom.pathopathic.dysphoric": "Dysphoric",
+  "symptom.pathopathic.empty": "Empty",
+  "symptom.pathopathic.hydrophobic": "Hydrophobic",
+  "symptom.pathopathic.insomnia": "Insomnia",
+  "symptom.pathopathic.lethargic": "Lethargic",
+  "symptom.pathopathic.parosmic": "Parosmic",
+  "symptom.pathopathic.soreness": "Soreness",
+  "symptom.pathopathic.weighted": "Weighted",
+  "symptom.pathopathic.wheezing": "Wheezing"
 }

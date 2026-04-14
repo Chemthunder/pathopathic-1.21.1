@@ -1,4 +1,4 @@
-package net.chemthunder.pathopathic.data.provider;
+package net.chemthunder.pathopathic.data.provider.resources;
 
 import net.chemthunder.pathopathic.impl.index.PPItems;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
@@ -12,10 +12,10 @@ public class PPModelGen extends FabricModelProvider {
         super(output);
     }
 
-    public void generateBlockStateModels(BlockStateModelGenerator blockStateModelGenerator) {}
+    public void generateBlockStateModels(BlockStateModelGenerator generator) {}
 
-    public void generateItemModels(ItemModelGenerator itemModelGenerator) {
-        itemModelGenerator.register(PPItems.WRAPPED_STICK, Models.HANDHELD);
-        itemModelGenerator.register(PPItems.FOUL_POUCH, Models.GENERATED);
+    public void generateItemModels(ItemModelGenerator generator) {
+        generator.register(PPItems.WRAPPED_STICK, Models.HANDHELD);
+        generator.register(PPItems.FOUL_POUCH, Models.GENERATED);
     }
 }

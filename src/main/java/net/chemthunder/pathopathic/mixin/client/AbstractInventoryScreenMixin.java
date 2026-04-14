@@ -1,6 +1,6 @@
 package net.chemthunder.pathopathic.mixin.client;
 
-import net.chemthunder.pathopathic.impl.util.DiseaseHud;
+import net.chemthunder.pathopathic.impl.client.DiseaseHud;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.ingame.AbstractInventoryScreen;
 import org.spongepowered.asm.mixin.Mixin;

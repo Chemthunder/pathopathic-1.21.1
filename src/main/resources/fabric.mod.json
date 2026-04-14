@@ -1,52 +1,52 @@
 {
-  "schemaVersion": 1,
-  "id": "pathopathic",
-  "version": "${version}",
-  "name": "Pathopathic",
-  "description": "A vast plague and disease mod, either beneficial or negative, it's up to you.",
-  "authors": [
-    "Chemthunder"
-  ],
-  "contributors": [
-    "KindlingCinder",
-    "AcoYT",
+    "schemaVersion": 1,
+    "id": "pathopathic",
+    "version": "${version}",
+    "name": "Pathopathic",
+    "description": "A vast plague and disease mod, either beneficial or negative, it's up to you.",
+    "authors": [
+        "Chemthunder"
+    ],
+    "contributors": [
+        "KindlingCinder",
+        "AcoYT",
 
-    "FVSMP - Prefix/Suffix ideas",
-    "Memory Lapse - Prefix/Suffix ideas",
-    "EightSidedSquare - Original inspiration"
-  ],
-  "contact": {
-    "sources": "https://github.com/Chemthunder/pathopathic-1.21.1"
-  },
-  "license": "CC0-1.0",
-  "icon": "assets/pathopathic/icon.png",
-  "environment": "*",
-  "entrypoints": {
-    "main": [
-      "net.chemthunder.pathopathic.impl.Pathopathic"
+        "FVSMP - Prefix/Suffix ideas",
+        "Memory Lapse - Prefix/Suffix ideas",
+        "EightSidedSquare - Original inspiration"
     ],
-    "client": [
-      "net.chemthunder.pathopathic.impl.PathopathicClient"
+    "contact": {
+        "sources": "https://github.com/Chemthunder/pathopathic-1.21.1"
+    },
+    "license": "CC0-1.0",
+    "icon": "assets/pathopathic/icon.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "net.chemthunder.pathopathic.impl.Pathopathic"
+        ],
+        "client": [
+            "net.chemthunder.pathopathic.impl.PathopathicClient"
+        ],
+        "fabric-datagen": [
+            "net.chemthunder.pathopathic.data.PathopathicDataGen"
+        ],
+        "cardinal-components": [
+            "net.chemthunder.pathopathic.impl.cca.PPComponents"
+        ]
+    },
+    "mixins": [
+        "pathopathic.mixins.json"
     ],
-    "fabric-datagen": [
-      "net.chemthunder.pathopathic.data.PathopathicDataGen"
-    ],
-    "cardinal-components": [
-      "net.chemthunder.pathopathic.impl.cca.PPComponents"
-    ]
-  },
-  "mixins": [
-    "pathopathic.mixins.json"
-  ],
-  "depends": {
-    "fabricloader": ">=0.15.11",
-    "minecraft": "~1.21.1",
-    "java": ">=21",
-    "fabric-api": "*"
-  },
-  "custom": {
-    "cardinal-components": [
-      "pathopathic:disease"
-    ]
-  }
+    "depends": {
+        "fabricloader": ">=0.15.11",
+        "minecraft": "~1.21.1",
+        "java": ">=21",
+        "fabric-api": "*"
+    },
+    "custom": {
+        "cardinal-components": [
+            "pathopathic:disease"
+        ]
+    }
 }

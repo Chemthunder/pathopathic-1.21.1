@@ -1,6 +1,8 @@
-package net.chemthunder.pathopathic.data.provider;
+package net.chemthunder.pathopathic.data.provider.lang;
 
+import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.index.PPItems;
+import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
@@ -12,7 +14,9 @@ public class PPLangGen extends FabricLanguageProvider {
         super(dataOutput, registryLookup);
     }
 
-    public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
-        PPItems.ITEMS.registerLang(wrapperLookup, translationBuilder);
+    public void generateTranslations(RegistryWrapper.WrapperLookup registries, TranslationBuilder builder) {
+        PPItems.ITEMS.registerLang(registries, builder);
+        PPDiseases.DISEASES.registerLang(registries, builder);
+        PPSymptoms.SYMPTOMS.registerLang(registries, builder);
     }
 }

@@ -6,8 +6,8 @@ import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 
 public class CancerousSymptom extends Symptom {
-    public CancerousSymptom() {
-        super("cancerous");
+    public CancerousSymptom(String name) {
+        super(name);
     }
 
     public void getTickingEffect(LivingEntity living) {

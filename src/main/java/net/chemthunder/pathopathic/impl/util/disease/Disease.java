@@ -2,34 +2,53 @@ package net.chemthunder.pathopathic.impl.util.disease;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.chemthunder.pathopathic.impl.index.PPDiseases;
+import net.chemthunder.pathopathic.impl.index.PPRegistries;
+import net.chemthunder.pathopathic.impl.index.PPSymptoms;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.registry.tag.TagKey;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public record Disease(String name, Symptom primary, Symptom secondary, boolean isViral, boolean isLethal) {
-    public static final Disease EMPTY = new Disease("null", Symptom.EMPTY, Symptom.EMPTY, false, false);
-    public static List<Disease> ALL_DISEASES = new ArrayList<>();
-
-    public static final Codec<Disease> CODEC = RecordCodecBuilder.create(instance ->
-            instance.group(
-                    Codec.STRING.optionalFieldOf("name", "").forGetter(Disease::name),
-                    Symptom.CODEC.optionalFieldOf("primary", Symptom.EMPTY).forGetter(Disease::primary),
-                    Symptom.CODEC.optionalFieldOf("secondary", Symptom.EMPTY).forGetter(Disease::secondary),
-                    Codec.BOOL.optionalFieldOf("isViral", false).forGetter(Disease::isViral),
-                    Codec.BOOL.optionalFieldOf("isLethal", false).forGetter(Disease::isLethal)
-            ).apply(instance, Disease::new)
-    );
-
-    public static List<Disease> getAllDiseases() {
-        ALL_DISEASES.add(EMPTY);
-        return ALL_DISEASES;
-    }
+public record Disease(String name, RegistryEntry<Symptom> primary, RegistryEntry<Symptom> secondary, boolean viral, boolean lethal) {
+    public static final Codec<Disease> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.optionalFieldOf("name", "empty").forGetter(Disease::name),
+            Symptom.CODEC.optionalFieldOf("primary", PPSymptoms.EMPTY).forGetter(Disease::primary),
+            Symptom.CODEC.optionalFieldOf("secondary", PPSymptoms.EMPTY).forGetter(Disease::secondary),
+            Codec.BOOL.optionalFieldOf("viral", false).forGetter(Disease::viral),
+            Codec.BOOL.optionalFieldOf("lethal", false).forGetter(Disease::lethal)
+    ).apply(instance, Disease::new));
 
     public static Disease fromString(String name) {
-        return ALL_DISEASES.stream().filter(disease -> disease.name().equalsIgnoreCase(name)).findFirst().orElse(EMPTY);
+        for (Disease disease : PPRegistries.DISEASE) {
+            if (disease.name.equalsIgnoreCase(name)) {
+                return disease;
+            }
+        }
+
+        return PPDiseases.EMPTY;
+    }
+
+    public boolean hasSymptomIn(TagKey<Symptom> tag) {
+        return this.primary.isIn(tag) || this.secondary.isIn(tag);
+    }
+
+    public List<RegistryEntry<Symptom>> getSymptoms() {
+        return Arrays.asList(this.primary, this.secondary);
     }
 
     public boolean isEmpty() {
-        return this == EMPTY;
+        return this == PPDiseases.EMPTY;
+    }
+
+    public String getTranslationKey() {
+        return Util.createTranslationKey("disease", getId(this));
+    }
+
+    public static Identifier getId(Disease disease) {
+        return PPRegistries.DISEASE.getId(disease);
     }
 }

@@ -3,6 +3,7 @@ package net.chemthunder.pathopathic.impl.item;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.util.DiseaseUtils;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
+import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -18,25 +19,30 @@ public class TestItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        DiseaseComponent disease = DiseaseComponent.KEY.get(user);
+        DiseaseComponent component = DiseaseComponent.KEY.get(user);
+        Disease disease = component.getDisease();
+        Symptom primary = disease.primary().value();
+        Symptom secondary = disease.secondary().value();
 
         if (user instanceof ServerPlayerEntity) {
             if (user.isSneaking()) {
                 Disease generatedDisease = DiseaseUtils.generateRandomDisease();
 
-                disease.setDisease(generatedDisease);
-                disease.setDuration(1900);
+                component.setDisease(generatedDisease);
+                component.setDuration(1900);
             } else {
-                user.sendMessage(Text.literal(disease.getDisease().name()));
+                user.sendMessage(Text.literal(disease.name()));
 
-                if (disease.getDisease().primary() != null && disease.getDisease().secondary() != null) {
-                    user.sendMessage(Text.literal(disease.getDisease().primary().getName()));
-                    user.sendMessage(Text.literal(disease.getDisease().secondary().getName()));
+                if (primary != null && secondary != null) {
+                    user.sendMessage(Text.literal(primary.getName()));
+                    user.sendMessage(Text.literal(secondary.getName()));
                 }
-                user.sendMessage(Text.literal(disease.getDisease().isViral() + ""));
-                user.sendMessage(Text.literal(disease.getDisease().isLethal() + ""));
+
+                user.sendMessage(Text.literal(String.valueOf(disease.viral())));
+                user.sendMessage(Text.literal(String.valueOf(disease.lethal())));
             }
         }
+
         return super.use(world, user, hand);
     }
 }

@@ -1,7 +1,7 @@
 package net.chemthunder.pathopathic.impl.util;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
-import net.chemthunder.pathopathic.impl.index.Symptoms;
+import net.chemthunder.pathopathic.impl.index.PPRegistries;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 
@@ -23,8 +23,7 @@ public class DiseaseUtils {
             "necro",
             "hydro",
             "plate",
-            "avogadro",
-            "sexually Transmitted "
+            "avogadro"
     );
     private static final List<String> SUFFIXES = List.of(
             "incantation",
@@ -52,7 +51,7 @@ public class DiseaseUtils {
         String returnedString = PREFIXES.get(random.nextInt(PREFIXES.size())) + SUFFIXES.get(random.nextInt(SUFFIXES.size()));
 
         if (BLACKLIST.contains(returnedString)) {
-            return "redacted";
+            return generateName(); // re-rolls name
         }
 
         return MiscUtils.formatString(returnedString);
@@ -60,10 +59,10 @@ public class DiseaseUtils {
 
     public static Disease generateRandomDisease() {
         Random random = new Random();
-        return new Disease(MiscUtils.formatString(generateName()), Symptoms.SYMPTOMS.get(random.nextInt(Symptoms.SYMPTOMS.size())), Symptoms.SYMPTOMS.get(random.nextInt(Symptoms.SYMPTOMS.size())), false, false);
+        return PPRegistries.DISEASE.get(random.nextInt(PPRegistries.DISEASE.size()));
     }
 
     public static boolean diseaseHasSymptom(Symptom symptom, Disease disease) {
-        return disease.primary() != null && disease.primary().equals(symptom) || disease.secondary() != null && disease.secondary().equals(symptom);
+        return disease.getSymptoms().contains(symptom);
     }
 }

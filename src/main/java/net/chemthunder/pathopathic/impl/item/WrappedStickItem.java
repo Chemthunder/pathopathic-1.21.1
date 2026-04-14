@@ -1,22 +1,18 @@
 package net.chemthunder.pathopathic.impl.item;
 
-import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.component.HeldDiseaseComponent;
-import net.chemthunder.pathopathic.impl.entity.PathoCauldronBlockEntity;
 import net.chemthunder.pathopathic.impl.index.PPDataComponents;
+import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
+import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
@@ -26,8 +22,7 @@ import java.util.List;
 
 public class WrappedStickItem extends Item {
     public WrappedStickItem(Settings settings) {
-        super(settings
-                .component(PPDataComponents.HELD_DISEASE, new HeldDiseaseComponent(Disease.EMPTY)));
+        super(settings.component(PPDataComponents.HELD_DISEASE, new HeldDiseaseComponent(PPDiseases.EMPTY)));
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -72,23 +67,20 @@ public class WrappedStickItem extends Item {
 //    }
 
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        var comp = stack.get(PPDataComponents.HELD_DISEASE);
+        HeldDiseaseComponent heldDisease = stack.getOrDefault(PPDataComponents.HELD_DISEASE, HeldDiseaseComponent.DEFAULT);
+        Disease disease = heldDisease.disease();
+        Symptom primary = disease.primary().value();
+        Symptom secondary = disease.secondary().value();
 
-        if (comp != null) {
-            if (!comp.disease().isEmpty()) {
-                Disease disease = comp.disease();
-
-
-
-                tooltip.add(Text.literal(MiscUtils.formatString(disease.name())).withColor(0xFFC6FC6F));
-                tooltip.add(
-                        Text.literal(MiscUtils.formatString(disease.primary().getName())).withColor(0xFFC6FC6F)
-                                .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
-                                .append(Text.literal(MiscUtils.formatString(disease.secondary().getName())).withColor(0xFFC6FC6F))
-                );
-            }
-
+        if (!disease.isEmpty()) {
+            tooltip.add(Text.translatable(disease.getTranslationKey()).withColor(0xFFC6FC6F));
+            tooltip.add(
+                    Text.translatable(primary.getTranslationKey()).withColor(0xFFC6FC6F)
+                            .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
+                            .append(Text.translatable(secondary.getTranslationKey()).withColor(0xFFC6FC6F))
+            );
         }
+
         super.appendTooltip(stack, context, tooltip, type);
     }
 

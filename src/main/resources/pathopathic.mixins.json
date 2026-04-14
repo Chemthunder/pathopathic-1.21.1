@@ -1,19 +1,18 @@
 {
-  "required": true,
-  "package": "net.chemthunder.pathopathic.mixin",
-  "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "CauldronBlockMixin",
-    "PlayerEntityMixin"
-  ],
-  "injectors": {
-    "defaultRequire": 1
-  },
-  "overwrites": {
-    "requireAnnotations": true
-  },
-  "client": [
-    "client.AbstractInventoryScreenMixin",
-    "client.ClientPlayerEntityMixin"
-  ]
+    "required": true,
+    "package": "net.chemthunder.pathopathic.mixin",
+    "plugin": "net.chemthunder.pathopathic.impl.util.PPMixinPlugin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "CauldronBlockMixin",
+        "ExecuteCommandMixin",
+        "PlayerEntityMixin"
+    ],
+    "client": [
+        "client.AbstractInventoryScreenMixin",
+        "client.ClientPlayerEntityMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+    }
 }

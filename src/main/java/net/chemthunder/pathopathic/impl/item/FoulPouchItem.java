@@ -1,8 +1,7 @@
 package net.chemthunder.pathopathic.impl.item;
 
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
-import net.chemthunder.pathopathic.impl.index.Symptoms;
-import net.chemthunder.pathopathic.impl.util.disease.Disease;
+import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -16,10 +15,11 @@ public class FoulPouchItem extends Item {
     }
 
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        DiseaseComponent disease = DiseaseComponent.KEY.get(user);
+        DiseaseComponent component = DiseaseComponent.KEY.get(user);
 
-        disease.setDisease(new Disease("test", Symptoms.DISTRACTED, Symptoms.DISTRACTED, false, false));
-        disease.setDuration(-1);
-        return super.use(world, user, hand);
+        component.setDisease(PPDiseases.TEST);
+        component.setDuration(1900);
+
+        return TypedActionResult.success(user.getStackInHand(hand));
     }
 }

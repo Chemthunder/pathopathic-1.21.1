@@ -1,35 +1,24 @@
 package net.chemthunder.pathopathic.impl.index;
 
 import net.chemthunder.pathopathic.impl.Pathopathic;
-import net.chemthunder.pathopathic.impl.entity.PathoCauldronBlockEntity;
+import net.chemthunder.pathopathic.impl.block.entity.CauldronBlockEntity;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
-import net.minecraft.util.Identifier;
-
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 @SuppressWarnings("deprecation")
 public interface PPBlockEntities {
-    Map<BlockEntityType<?>, Identifier> BLOCK_ENTITIES = new LinkedHashMap<>();
+    BlockEntityType<CauldronBlockEntity> CAULDRON = create("cauldron", FabricBlockEntityTypeBuilder
+            .create(CauldronBlockEntity::new, Blocks.CAULDRON, Blocks.WATER_CAULDRON, Blocks.LAVA_CAULDRON, Blocks.POWDER_SNOW_CAULDRON));
 
-    BlockEntityType<PathoCauldronBlockEntity> PATHO_CAULDRON = create("patho_cauldron", FabricBlockEntityTypeBuilder
-            .create(PathoCauldronBlockEntity::new)
-            .addBlock(Blocks.CAULDRON)
-            .build());
-
-    private static <T extends BlockEntity> BlockEntityType<T> create(String name, BlockEntityType<T> blockEntity) {
-        BLOCK_ENTITIES.put(blockEntity, Pathopathic.id(name));
-        return blockEntity;
+    private static <T extends BlockEntity> BlockEntityType<T> create(String name, FabricBlockEntityTypeBuilder<T> builder) {
+        return Registry.register(Registries.BLOCK_ENTITY_TYPE, Pathopathic.id(name), builder.build());
     }
 
-    static void init() {
-        BLOCK_ENTITIES.keySet().forEach(blockEntity -> {
-            Registry.register(Registries.BLOCK_ENTITY_TYPE, BLOCK_ENTITIES.get(blockEntity), blockEntity);
-        });
-    }
+    static void init() {}
+
+    static void clientInit() {}
 }
