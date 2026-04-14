@@ -19,6 +19,7 @@ public class Pathopathic implements ModInitializer {
         /* Custom */
         PPDiseases.init();
         PPSymptoms.init();
+        PPBloodTypes.init();
         PPRegistries.init();
 
         LOGGER.info("Disease time!!!");

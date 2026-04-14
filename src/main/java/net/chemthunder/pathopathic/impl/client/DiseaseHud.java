@@ -2,6 +2,7 @@ package net.chemthunder.pathopathic.impl.client;
 
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
+import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
@@ -24,7 +25,10 @@ public class DiseaseHud {
 
             if (component.getDisease() != PPDiseases.EMPTY) {
                 if (client.world != null) {
-                    MutableText duration = component.getDuration() == -1
+                    MutableText duration = component.getDisease().getSymptoms().contains(PPSymptoms.DISTRACTED)
+                            ? Text.literal("10:10").formatted(Formatting.OBFUSCATED).formatted(Formatting.DARK_GRAY)
+
+                            : component.getDuration() == -1
                             ? Text.literal("∞").formatted(Formatting.DARK_GRAY)
                             : Text.literal(StringHelper.formatTicks(component.getDuration(), client.world.getTickManager().getTickRate())).formatted(Formatting.DARK_GRAY);
 

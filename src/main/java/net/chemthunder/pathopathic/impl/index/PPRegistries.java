@@ -1,6 +1,7 @@
 package net.chemthunder.pathopathic.impl.index;
 
 import net.chemthunder.pathopathic.impl.Pathopathic;
+import net.chemthunder.pathopathic.impl.util.disease.BloodType;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.fabricmc.fabric.api.event.registry.FabricRegistryBuilder;
@@ -16,6 +17,11 @@ public interface PPRegistries {
 
     RegistryKey<Registry<Symptom>> symptomKey = RegistryKey.ofRegistry(Pathopathic.id("symptom"));
     Registry<Symptom> SYMPTOM = FabricRegistryBuilder.createDefaulted(symptomKey, Pathopathic.id("empty"))
+            .attribute(RegistryAttribute.MODDED)
+            .buildAndRegister();
+
+    RegistryKey<Registry<BloodType>> bloodTypeKey = RegistryKey.ofRegistry(Pathopathic.id("blood_type"));
+    Registry<BloodType> BLOOD_TYPE = FabricRegistryBuilder.createDefaulted(bloodTypeKey, Pathopathic.id("empty"))
             .attribute(RegistryAttribute.MODDED)
             .buildAndRegister();
 
