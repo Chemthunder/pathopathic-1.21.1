@@ -1,10 +1,8 @@
 package net.chemthunder.pathopathic.impl.item;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
-import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.component.HeldBloodComponent;
 import net.chemthunder.pathopathic.impl.index.PPDataComponents;
-import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.util.disease.Blood;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
@@ -37,15 +35,15 @@ public class FoulPouchItem extends Item {
     }
 
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
-        var bloodGrab = stack.get(PPDataComponents.HELD_BLOOD);
+        var component = stack.get(PPDataComponents.HELD_BLOOD);
 
-        if (bloodGrab != null) {
-            Blood blood = bloodGrab.blood();
+        if (component != null) {
+            Blood blood = component.blood();
 
             if (!blood.isEmpty()) {
                 tooltip.add(Text.translatable(blood.type().getTranslationKey()).withColor(blood.type().color()));
-                tooltip.add(Text.translatable("text.pp.cure".formatted(Formatting.DARK_GRAY)).append(Text.translatable(blood.type().curedSymptom().getIdAsString()).withColor(blood.type().color())));
-                tooltip.add(Text.translatable("text.pp.giver").append(Text.literal(MiscUtils.formatString(blood.giver()))));
+                tooltip.add(Text.translatable("text.pp.cure").formatted(Formatting.DARK_GRAY).append(Text.literal(MiscUtils.formatString(blood.type().curedSymptom().getName())).withColor(blood.type().color())));
+                tooltip.add(Text.translatable("text.pp.giver").formatted(Formatting.DARK_GRAY).append(Text.translatable(blood.giver()).withColor(blood.type().color())));
             }
         }
 

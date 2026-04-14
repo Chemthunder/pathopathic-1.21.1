@@ -32,8 +32,8 @@ public class DiseaseHud {
                             ? Text.literal("∞").formatted(Formatting.DARK_GRAY)
                             : Text.literal(StringHelper.formatTicks(component.getDuration(), client.world.getTickManager().getTickRate())).formatted(Formatting.DARK_GRAY);
 
-                    Symptom primary = component.getDisease().primary().value();
-                    Symptom secondary = component.getDisease().secondary().value();
+                    Symptom primary = component.getDisease().primary();
+                    Symptom secondary = component.getDisease().secondary();
 
                     List<Text> contents = Arrays.asList(
                             Text.translatable(component.getDisease().getTranslationKey())

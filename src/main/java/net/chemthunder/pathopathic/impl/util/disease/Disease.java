@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.index.PPRegistries;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
-import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
@@ -13,7 +12,7 @@ import net.minecraft.util.Util;
 import java.util.Arrays;
 import java.util.List;
 
-public record Disease(String name, RegistryEntry<Symptom> primary, RegistryEntry<Symptom> secondary, boolean viral, boolean lethal) {
+public record Disease(String name, Symptom primary, Symptom secondary, boolean viral, boolean lethal) {
     public static final Codec<Disease> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             Codec.STRING.optionalFieldOf("name", "empty").forGetter(Disease::name),
             Symptom.CODEC.optionalFieldOf("primary", PPSymptoms.EMPTY).forGetter(Disease::primary),
@@ -32,11 +31,7 @@ public record Disease(String name, RegistryEntry<Symptom> primary, RegistryEntry
         return PPDiseases.EMPTY;
     }
 
-    public boolean hasSymptomIn(TagKey<Symptom> tag) {
-        return this.primary.isIn(tag) || this.secondary.isIn(tag);
-    }
-
-    public List<RegistryEntry<Symptom>> getSymptoms() {
+    public List<Symptom> getSymptoms() {
         return Arrays.asList(this.primary, this.secondary);
     }
 

@@ -1,7 +1,7 @@
 package net.chemthunder.pathopathic.impl.item;
 
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
-import net.chemthunder.pathopathic.impl.util.DiseaseUtils;
+import net.chemthunder.pathopathic.impl.util.ModUtils;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.minecraft.entity.player.PlayerEntity;
@@ -21,12 +21,12 @@ public class TestItem extends Item {
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         DiseaseComponent component = DiseaseComponent.KEY.get(user);
         Disease disease = component.getDisease();
-        Symptom primary = disease.primary().value();
-        Symptom secondary = disease.secondary().value();
+        Symptom primary = disease.primary();
+        Symptom secondary = disease.secondary();
 
         if (user instanceof ServerPlayerEntity) {
             if (user.isSneaking()) {
-                Disease generatedDisease = DiseaseUtils.generateRandomDisease();
+                Disease generatedDisease = ModUtils.generateRandomDisease();
 
                 component.setDisease(generatedDisease);
                 component.setDuration(1900);

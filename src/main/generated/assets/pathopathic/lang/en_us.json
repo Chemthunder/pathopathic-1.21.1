@@ -1,4 +1,10 @@
 {
+  "blood_type.pathopathic.empty": "Empty",
+  "blood_type.pathopathic.ender": "Ender",
+  "blood_type.pathopathic.humanoid": "Humanoid",
+  "blood_type.pathopathic.neutral": "Neutral",
+  "blood_type.pathopathic.reanimated": "Reanimated",
+  "disease.pathopathic.blue": "Blue",
   "disease.pathopathic.distracted": "Distracted",
   "disease.pathopathic.empty": "Empty",
   "disease.pathopathic.lunar_lucid": "Lunar Lucid",
@@ -6,6 +12,7 @@
   "item.pathopathic.foul_pouch": "Foul Pouch",
   "item.pathopathic.test": "Test",
   "item.pathopathic.wrapped_stick": "Wrapped Stick",
+  "symptom.pathopathic.blue": "Blue",
   "symptom.pathopathic.cancerous": "Cancerous",
   "symptom.pathopathic.cross_eyed": "Cross Eyed",
   "symptom.pathopathic.distracted": "Distracted",
@@ -18,5 +25,8 @@
   "symptom.pathopathic.parosmic": "Parosmic",
   "symptom.pathopathic.soreness": "Soreness",
   "symptom.pathopathic.weighted": "Weighted",
-  "symptom.pathopathic.wheezing": "Wheezing"
+  "symptom.pathopathic.wheezing": "Wheezing",
+  "text.pp.cure": "Cures ",
+  "text.pp.giver": "Given by ",
+  "text.pp.unable_to_extract": "You are unable to extract blood from this entity."
 }

@@ -20,7 +20,7 @@ public class DiseaseRegistrant extends RegistrantBase<Disease> {
         return register(name, disease.apply(name));
     }
 
-    public Disease register(String name, RegistryEntry<Symptom> primary, RegistryEntry<Symptom> secondary, boolean viral, boolean lethal) {
+    public Disease register(String name, Symptom primary, Symptom secondary, boolean viral, boolean lethal) {
         return register(name, new Disease(name, primary, secondary, viral, lethal));
     }
 

@@ -69,8 +69,8 @@ public class WrappedStickItem extends Item {
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         HeldDiseaseComponent heldDisease = stack.getOrDefault(PPDataComponents.HELD_DISEASE, HeldDiseaseComponent.DEFAULT);
         Disease disease = heldDisease.disease();
-        Symptom primary = disease.primary().value();
-        Symptom secondary = disease.secondary().value();
+        Symptom primary = disease.primary();
+        Symptom secondary = disease.secondary();
 
         if (!disease.isEmpty()) {
             tooltip.add(Text.translatable(disease.getTranslationKey()).withColor(0xFFC6FC6F));

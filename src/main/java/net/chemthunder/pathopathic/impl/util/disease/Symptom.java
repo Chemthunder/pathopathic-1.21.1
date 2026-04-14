@@ -2,6 +2,7 @@ package net.chemthunder.pathopathic.impl.util.disease;
 
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.chemthunder.pathopathic.impl.index.PPRegistries;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.minecraft.entity.LivingEntity;
@@ -12,9 +13,9 @@ import net.minecraft.util.Util;
 import java.util.Objects;
 
 public class Symptom {
-    public static final Codec<RegistryEntry<Symptom>> CODEC = PPRegistries.SYMPTOM
-            .getEntryCodec()
-            .validate(entry -> entry.matches(Objects::isNull) || entry.matches(PPSymptoms.EMPTY) ? DataResult.error(() -> "Symptom cannot be null") : DataResult.success(entry));
+    public static final Codec<Symptom> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.optionalFieldOf("name", "empty").forGetter(Symptom::getName)
+    ).apply(instance, Symptom::new));
 
     private final String name;
 

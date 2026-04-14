@@ -11,21 +11,22 @@ import net.minecraft.registry.entry.RegistryEntry;
 public interface PPSymptoms {
     SymptomRegistrant SYMPTOMS = new SymptomRegistrant(Pathopathic.MOD_ID);
 
-    RegistryEntry<Symptom> EMPTY = SYMPTOMS.registerRef("empty", Symptom::new);
+    Symptom EMPTY = SYMPTOMS.register("empty", Symptom::new);
 
-    RegistryEntry<Symptom> CANCEROUS = SYMPTOMS.registerRef("cancerous", CancerousSymptom::new);
-    RegistryEntry<Symptom> DIZZY_SPELLS = SYMPTOMS.registerRef("dizzy_spells", DizzySpellsSymptom::new);
-    RegistryEntry<Symptom> WHEEZING = SYMPTOMS.registerRef("wheezing", WheezingSymptom::new);
+    Symptom CANCEROUS = SYMPTOMS.register("cancerous", CancerousSymptom::new);
+    Symptom DIZZY_SPELLS = SYMPTOMS.register("dizzy_spells", DizzySpellsSymptom::new);
+    Symptom WHEEZING = SYMPTOMS.register("wheezing", WheezingSymptom::new);
 
-    RegistryEntry<Symptom> LETHARGIC = SYMPTOMS.registerRef("lethargic", Symptom::new);
-    RegistryEntry<Symptom> INSOMNIA = SYMPTOMS.registerRef("insomnia", Symptom::new);
-    RegistryEntry<Symptom> SORENESS = SYMPTOMS.registerRef("soreness", Symptom::new);
-    RegistryEntry<Symptom> DISTRACTED = SYMPTOMS.registerRef("distracted", Symptom::new);
-    RegistryEntry<Symptom> CROSS_EYED = SYMPTOMS.registerRef("cross_eyed", Symptom::new);
-    RegistryEntry<Symptom> WEIGHTED = SYMPTOMS.registerRef("weighted", Symptom::new);
-    RegistryEntry<Symptom> HYDROPHOBIC = SYMPTOMS.registerRef("hydrophobic", Symptom::new);
-    RegistryEntry<Symptom> PAROSMIC = SYMPTOMS.registerRef("parosmic", Symptom::new);
-    RegistryEntry<Symptom> DYSPHORIC = SYMPTOMS.registerRef("dysphoric", Symptom::new);
+    Symptom LETHARGIC = SYMPTOMS.register("lethargic", Symptom::new);
+    Symptom INSOMNIA = SYMPTOMS.register("insomnia", Symptom::new);
+    Symptom SORENESS = SYMPTOMS.register("soreness", Symptom::new);
+    Symptom DISTRACTED = SYMPTOMS.register("distracted", Symptom::new);
+    Symptom CROSS_EYED = SYMPTOMS.register("cross_eyed", Symptom::new);
+    Symptom WEIGHTED = SYMPTOMS.register("weighted", Symptom::new);
+    Symptom HYDROPHOBIC = SYMPTOMS.register("hydrophobic", Symptom::new);
+    Symptom PAROSMIC = SYMPTOMS.register("parosmic", Symptom::new);
+    Symptom DYSPHORIC = SYMPTOMS.register("dysphoric", Symptom::new);
+    Symptom BLUE = SYMPTOMS.register("blue", Symptom::new);
 
     static void init() {}
 }

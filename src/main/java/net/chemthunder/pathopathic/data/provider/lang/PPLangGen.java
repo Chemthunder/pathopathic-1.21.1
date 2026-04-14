@@ -23,5 +23,6 @@ public class PPLangGen extends FabricLanguageProvider {
 
         builder.add("text.pp.cure", "Cures ");
         builder.add("text.pp.giver", "Given by ");
+        builder.add("text.pp.unable_to_extract", "You are unable to extract blood from this entity.");
     }
 }

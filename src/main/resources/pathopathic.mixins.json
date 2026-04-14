@@ -10,9 +10,10 @@
     ],
     "client": [
         "client.AbstractInventoryScreenMixin",
-        "client.ClientPlayerEntityMixin"
+        "client.ClientPlayerEntityMixin",
+        "client.InGameHudMixin"
     ],
     "injectors": {
         "defaultRequire": 1
-    }
+  }
 }

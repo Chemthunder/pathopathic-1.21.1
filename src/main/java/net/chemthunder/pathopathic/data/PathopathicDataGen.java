@@ -1,6 +1,6 @@
 package net.chemthunder.pathopathic.data;
 
-import net.chemthunder.pathopathic.data.provider.PPSymptomTagGen;
+import net.chemthunder.pathopathic.data.provider.PPEntityTypeTagGen;
 import net.chemthunder.pathopathic.data.provider.lang.PPLangGen;
 import net.chemthunder.pathopathic.data.provider.resources.PPModelGen;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
@@ -14,6 +14,6 @@ public class PathopathicDataGen implements DataGeneratorEntrypoint {
 
         pack.addProvider(PPModelGen::new);
 
-        pack.addProvider(PPSymptomTagGen::new);
+        pack.addProvider(PPEntityTypeTagGen::new);
     }
 }

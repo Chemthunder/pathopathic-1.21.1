@@ -8,7 +8,7 @@ import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import java.util.List;
 import java.util.Random;
 
-public class DiseaseUtils {
+public class ModUtils {
     private static final List<String> PREFIXES = List.of(
             "trans",
             "gay",
