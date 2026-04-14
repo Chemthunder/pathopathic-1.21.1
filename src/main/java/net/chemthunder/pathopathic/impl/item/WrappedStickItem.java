@@ -52,24 +52,24 @@ public class WrappedStickItem extends Item {
         return super.use(world, user, hand);
     }
 
-    public ActionResult useOnBlock(ItemUsageContext context) {
-        PlayerEntity player = context.getPlayer();
-        if (player != null) {
-            BlockState state = context.getWorld().getBlockState(context.getBlockPos());
-
-            ItemStack stack = player.getStackInHand(player.getActiveHand());
-            var comp = stack.get(PPDataComponents.HELD_DISEASE);
-
-            if (comp != null) {
-                if (state.isOf(Blocks.WATER_CAULDRON)) {
-                    if (context.getWorld().getBlockEntity(context.getBlockPos()) instanceof PathoCauldronBlockEntity cauldronBlockEntity) {
-                        cauldronBlockEntity.setHeldDisease(comp.disease());
-                    }
-                }
-            }
-        }
-        return super.useOnBlock(context);
-    }
+//    public ActionResult useOnBlock(ItemUsageContext context) {
+//        PlayerEntity player = context.getPlayer();
+//        if (player != null) {
+//            BlockState state = context.getWorld().getBlockState(context.getBlockPos());
+//
+//            ItemStack stack = player.getStackInHand(player.getActiveHand());
+//            var comp = stack.get(PPDataComponents.HELD_DISEASE);
+//
+//            if (comp != null) {
+//                if (state.isOf(Blocks.WATER_CAULDRON)) {
+//                    if (context.getWorld().getBlockEntity(context.getBlockPos()) instanceof PathoCauldronBlockEntity cauldronBlockEntity) {
+//                        cauldronBlockEntity.setHeldDisease(comp.disease());
+//                    }
+//                }
+//            }
+//        }
+//        return super.useOnBlock(context);
+//    }
 
     public void appendTooltip(ItemStack stack, TooltipContext context, List<Text> tooltip, TooltipType type) {
         var comp = stack.get(PPDataComponents.HELD_DISEASE);

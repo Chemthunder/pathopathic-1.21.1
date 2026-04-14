@@ -18,9 +18,11 @@ public abstract class PlayerEntityMixin {
         PlayerEntity player = (PlayerEntity) (Object) this;
         DiseaseComponent component = DiseaseComponent.KEY.get(player);
 
-        if (component.getDisease() != Disease.EMPTY) {
-            if (component.getDisease().primary().equals(Symptoms.LETHARGIC) || component.getDisease().secondary().equals(Symptoms.LETHARGIC)) {
-                Pathopathic.LOGGER.info("penis");
+        if (!player.getWorld().isClient) {
+            if (component.getDisease() != Disease.EMPTY) {
+                if (component.getDisease().primary().equals(Symptoms.LETHARGIC) || component.getDisease().secondary().equals(Symptoms.LETHARGIC)) {
+                    Pathopathic.LOGGER.info("penis");
+                }
             }
         }
     }
