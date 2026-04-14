@@ -1,6 +1,5 @@
 package net.chemthunder.pathopathic.impl.item;
 
-import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.component.HeldDiseaseComponent;
 import net.chemthunder.pathopathic.impl.index.PPDataComponents;
@@ -74,11 +73,11 @@ public class WrappedStickItem extends Item {
         Symptom secondary = disease.secondary().value();
 
         if (!disease.isEmpty()) {
-            tooltip.add(Text.literal(MiscUtils.formatString(disease.name())).withColor(0xFFC6FC6F));
+            tooltip.add(Text.translatable(disease.getTranslationKey()).withColor(0xFFC6FC6F));
             tooltip.add(
-                    Text.literal(MiscUtils.formatString(primary.getName())).withColor(0xFFC6FC6F)
+                    Text.translatable(primary.getTranslationKey()).withColor(0xFFC6FC6F)
                             .append(Text.literal(", ").formatted(Formatting.DARK_GRAY))
-                            .append(Text.literal(MiscUtils.formatString(secondary.getName())).withColor(0xFFC6FC6F))
+                            .append(Text.translatable(secondary.getTranslationKey()).withColor(0xFFC6FC6F))
             );
         }
 

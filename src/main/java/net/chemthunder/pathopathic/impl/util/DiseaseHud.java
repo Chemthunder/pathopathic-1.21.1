@@ -1,6 +1,5 @@
 package net.chemthunder.pathopathic.impl.util;
 
-import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
@@ -33,12 +32,12 @@ public class DiseaseHud {
                     Symptom secondary = component.getDisease().secondary().value();
 
                     List<Text> contents = Arrays.asList(
-                            Text.literal(MiscUtils.formatString(component.getDisease().name()))
+                            Text.translatable(component.getDisease().getTranslationKey())
                                     .withColor(0xFFC6FC6F),
-                            Text.literal(MiscUtils.formatString(primary.getName()))
+                            Text.translatable(primary.getTranslationKey())
                                     .withColor(0xFFC6FC6F)
                                     .append(", ")
-                                    .append(Text.literal(MiscUtils.formatString(secondary.getName()))
+                                    .append(Text.translatable(secondary.getTranslationKey())
                                             .withColor(0xFFC6FC6F)),
                             duration
                     );
