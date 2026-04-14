@@ -19,7 +19,7 @@ public abstract class PlayerEntityMixin {
         DiseaseComponent component = DiseaseComponent.KEY.get(this);
 
         if (component.getDisease().hasSymptomIn(PPSymptomTags.DISABLES_SPRINTING)) {
-            Pathopathic.LOGGER.info("Player {} is Lethargic!", this.getNameForScoreboard());
+            //Pathopathic.LOGGER.info("Player {} is Lethargic!", this.getNameForScoreboard());
         }
     }
 }
