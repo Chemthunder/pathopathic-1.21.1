@@ -1,4 +1,4 @@
-package net.chemthunder.pathopathic.impl.util;
+package net.chemthunder.pathopathic.impl.client;
 
 import net.chemthunder.pathopathic.impl.cca.entity.DiseaseComponent;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
