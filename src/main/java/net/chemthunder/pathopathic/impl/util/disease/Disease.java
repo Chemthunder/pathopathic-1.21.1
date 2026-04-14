@@ -8,6 +8,7 @@ import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Util;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,6 +42,10 @@ public record Disease(String name, RegistryEntry<Symptom> primary, RegistryEntry
 
     public boolean isEmpty() {
         return this == PPDiseases.EMPTY;
+    }
+
+    public String getTranslationKey() {
+        return Util.createTranslationKey("disease", getId(this));
     }
 
     public static Identifier getId(Disease disease) {

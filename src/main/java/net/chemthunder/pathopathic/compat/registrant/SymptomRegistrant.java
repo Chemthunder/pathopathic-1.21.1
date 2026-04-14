@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Util;
 
 import java.util.function.Function;
 
@@ -32,9 +31,6 @@ public class SymptomRegistrant extends RegistrantBase<Symptom> {
     }
 
     public void registerLang(RegistryWrapper.WrapperLookup registries, FabricLanguageProvider.TranslationBuilder builder) {
-        this.toRegister.forEach(symptom -> {
-            String key = Util.createTranslationKey("symptom", Symptom.getId(symptom)); // "symptom.pathopathic.empty"
-            builder.add(key, MiscUtils.formatString(symptom.getName()));
-        });
+        this.toRegister.forEach(symptom -> builder.add(symptom.getTranslationKey(), MiscUtils.formatString(symptom.getName())));
     }
 }

@@ -8,7 +8,6 @@ import net.chemthunder.pathopathic.impl.util.disease.Symptom;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.util.Util;
 
 import java.util.function.Function;
 
@@ -26,9 +25,6 @@ public class DiseaseRegistrant extends RegistrantBase<Disease> {
     }
 
     public void registerLang(RegistryWrapper.WrapperLookup registries, FabricLanguageProvider.TranslationBuilder builder) {
-        this.toRegister.forEach(disease -> {
-            String key = Util.createTranslationKey("disease", Disease.getId(disease)); // "disease.pathopathic.empty"
-            builder.add(key, MiscUtils.formatString(disease.name()));
-        });
+        this.toRegister.forEach(disease -> builder.add(disease.getTranslationKey(), MiscUtils.formatString(disease.name())));
     }
 }
