@@ -11,20 +11,24 @@ import java.util.Random;
 
 public class ModUtils {
     private static final List<String> PREFIXES = List.of(
-            "trans",
-            "gay",
             "german",
             "pre",
             "fix",
             "bre",
             "pickle",
-            "untitled",
             "homo",
             "",
             "necro",
             "hydro",
             "plate",
-            "avogadro"
+            "avogadro",
+            "regal",
+            "aero",
+            "pyro",
+            "fungal",
+            "waste",
+            "patho",
+            "panic"
     );
     private static final List<String> SUFFIXES = List.of(
             "incantation",
@@ -40,7 +44,7 @@ public class ModUtils {
             "",
             " Infliction",
             "mancy",
-            " Iysteria"
+            "iysteria"
     );
     private static final List<String> BLACKLIST = List.of(
             "neonazi",
