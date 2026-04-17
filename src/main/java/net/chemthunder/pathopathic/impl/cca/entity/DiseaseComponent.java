@@ -4,7 +4,7 @@ import net.acoyt.acornlib.api.util.MiscUtils;
 import net.chemthunder.pathopathic.impl.Pathopathic;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
-import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.nbt.NbtOps;
@@ -15,12 +15,12 @@ import org.ladysnake.cca.api.v3.component.tick.CommonTickingComponent;
 
 public class DiseaseComponent implements AutoSyncedComponent, CommonTickingComponent {
     public static final ComponentKey<DiseaseComponent> KEY = MiscUtils.getOrCreateKey(Pathopathic.id("disease"), DiseaseComponent.class);
-    private final LivingEntity living;
+    private final PlayerEntity living;
 
     private Disease disease = PPDiseases.EMPTY;
     private int duration = 0;
 
-    public DiseaseComponent(LivingEntity living) {
+    public DiseaseComponent(PlayerEntity living) {
         this.living = living;
     }
 
@@ -29,6 +29,12 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
     }
 
     public void tick() {
+        if (!this.living.getWorld().isClient()) {
+            if (!this.disease.isEmpty()) {
+                this.sync();
+            }
+        }
+
         if (this.duration > 0) {
             this.duration--;
             if (this.duration == 0) {
@@ -54,6 +60,15 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
     public void setDuration(int duration) {
         this.duration = duration;
         this.sync();
+    }
+
+    public void setDisease(Disease disease, int duration) {
+        this.disease = disease;
+        this.duration = duration;
+
+        if (!this.living.getWorld().isClient()) {
+            this.sync();
+        }
     }
 
     public void readFromNbt(NbtCompound nbt, RegistryWrapper.WrapperLookup wrapperLookup) {

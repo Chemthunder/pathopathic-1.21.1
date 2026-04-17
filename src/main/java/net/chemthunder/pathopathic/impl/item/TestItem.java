@@ -24,13 +24,13 @@ public class TestItem extends Item {
         Symptom primary = disease.primary();
         Symptom secondary = disease.secondary();
 
-        if (user instanceof ServerPlayerEntity) {
-            if (user.isSneaking()) {
-                Disease generatedDisease = ModUtils.generateRandomDisease();
 
-                component.setDisease(generatedDisease);
-                component.setDuration(1900);
-            } else {
+        if (user.isSneaking()) {
+            Disease generatedDisease = ModUtils.generateRandomDisease();
+
+            component.setDisease(generatedDisease, 1900);
+        } else {
+            if (!world.isClient()) {
                 user.sendMessage(Text.literal(disease.name()));
 
                 if (primary != null && secondary != null) {
@@ -42,7 +42,6 @@ public class TestItem extends Item {
                 user.sendMessage(Text.literal(String.valueOf(disease.lethal())));
             }
         }
-
         return super.use(world, user, hand);
     }
 }
