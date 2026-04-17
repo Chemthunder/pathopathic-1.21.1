@@ -1,7 +1,6 @@
 package net.chemthunder.pathopathic.impl.util;
 
 import net.acoyt.acornlib.api.util.MiscUtils;
-import net.chemthunder.pathopathic.impl.index.PPRegistries;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
 import net.chemthunder.pathopathic.impl.util.disease.Disease;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;

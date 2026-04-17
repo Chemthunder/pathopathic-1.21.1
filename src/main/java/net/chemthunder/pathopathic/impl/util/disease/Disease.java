@@ -5,7 +5,6 @@ import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.index.PPRegistries;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
-import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
 

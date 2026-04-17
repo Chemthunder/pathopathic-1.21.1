@@ -32,8 +32,8 @@ public class DiseaseComponent implements AutoSyncedComponent, CommonTickingCompo
         if (this.duration > 0) {
             this.duration--;
             if (this.duration == 0) {
-                setDisease(PPDiseases.EMPTY);
-                sync();
+                this.setDisease(PPDiseases.EMPTY);
+                this.sync();
             }
         }
     }

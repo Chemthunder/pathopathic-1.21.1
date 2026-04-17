@@ -1,6 +1,5 @@
 package net.chemthunder.pathopathic.data.provider.lang;
 
-import net.chemthunder.pathopathic.impl.index.PPBloodTypes;
 import net.chemthunder.pathopathic.impl.index.PPDiseases;
 import net.chemthunder.pathopathic.impl.index.PPItems;
 import net.chemthunder.pathopathic.impl.index.PPSymptoms;
@@ -19,7 +18,6 @@ public class PPLangGen extends FabricLanguageProvider {
         PPItems.ITEMS.registerLang(registries, builder);
         PPDiseases.DISEASES.registerLang(registries, builder);
         PPSymptoms.SYMPTOMS.registerLang(registries, builder);
-        PPBloodTypes.BLOOD_TYPES.registerLang(registries, builder);
 
         builder.add("text.pp.cure", "Cures ");
         builder.add("text.pp.giver", "Given by ");

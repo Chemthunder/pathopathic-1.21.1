@@ -6,7 +6,6 @@ import net.chemthunder.pathopathic.impl.symptom.CancerousSymptom;
 import net.chemthunder.pathopathic.impl.symptom.DizzySpellsSymptom;
 import net.chemthunder.pathopathic.impl.symptom.WheezingSymptom;
 import net.chemthunder.pathopathic.impl.util.disease.Symptom;
-import net.minecraft.registry.entry.RegistryEntry;
 
 public interface PPSymptoms {
     SymptomRegistrant SYMPTOMS = new SymptomRegistrant(Pathopathic.MOD_ID);
